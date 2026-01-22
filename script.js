@@ -20,7 +20,7 @@ const languages = {
 };
 
 /* =========================
-   ZENTH ALPHABET (ORIGINAL – WORKING)
+   ZENTH ALPHABET (ORIGINAL)
 ========================= */
 
 const zenthAlphabet = {
@@ -33,31 +33,32 @@ const zenthAlphabet = {
   "y": "𐊚", "z": "𐊂"
 };
 
+// Automatically generate reverse mapping
 const reverseZenthAlphabet = {};
 for (const letter in zenthAlphabet) {
   reverseZenthAlphabet[zenthAlphabet[letter]] = letter;
 }
 
 /* =========================
-   TRANSLITERATION
+   TRANSLITERATION FUNCTIONS
 ========================= */
 
 function toZenth(text) {
   return text
     .toLowerCase()
     .split("")
-    .map(char => zenthAlphabet[char] || char)
+    .map(c => zenthAlphabet[c] || c) // Any character not in a-z stays the same
     .join("");
 }
 
 function fromZenth(text) {
   return [...text]
-    .map(char => reverseZenthAlphabet[char] || char)
+    .map(c => reverseZenthAlphabet[c] || c)
     .join("");
 }
 
 /* =========================
-   TRANSLATION HANDLER
+   TRANSLATE HANDLER
 ========================= */
 
 function translateText() {
@@ -65,27 +66,25 @@ function translateText() {
   const to = document.getElementById("toLang").value;
   const input = document.getElementById("inputText").value;
 
-  // Any language → Zenth (alphabet only)
-  if (to === "zenth" && from !== "zenth") {
+  // If Zenth is the target language, transliterate everything
+  if (to === "zenth") {
     setOutput(toZenth(input));
     return;
   }
 
-  // Zenth → Any language (alphabet only)
-  if (from === "zenth" && to !== "zenth") {
+  // If Zenth is the source language, convert back to Latin
+  if (from === "zenth") {
     setOutput(fromZenth(input));
     return;
   }
 
-  // Zenth → Zenth
-  if (from === "zenth" && to === "zenth") {
-    setOutput(input);
-    return;
-  }
-
-  // Non-Zenth → Non-Zenth
-  setOutput("⚠️ Non-Zenth translations are not supported.");
+  // Non-Zenth → Non-Zenth (just copy text for now)
+  setOutput(input);
 }
+
+/* =========================
+   UI OUTPUT
+========================= */
 
 function setOutput(text) {
   document.getElementById("outputText").textContent = text;
@@ -109,3 +108,4 @@ function populateMenus() {
 }
 
 populateMenus();
+
