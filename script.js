@@ -1,7 +1,6 @@
 /* =========================
-   LANGUAGE LIST (UI ONLY)
+   LANGUAGE LIST
 ========================= */
-
 const languages = {
   auto: "Detect language",
   english: "English",
@@ -20,20 +19,19 @@ const languages = {
 };
 
 /* =========================
-   ZENTH ALPHABET (ORIGINAL)
+   ZENTH ALPHABET
 ========================= */
-
 const zenthAlphabet = {
-  "a": "𐊜", "b": "𐊗", "c": "𐊍", "d": "𐊅",
-  "e": "𐊴", "f": "𐊇", "g": "𐊈", "h": "𐊉",
-  "i": "𐊡", "j": "𐊊", "k": "𐊋", "l": "𐊠",
-  "m": "𐊓", "n": "𐊧", "o": "𐊵", "p": "𐊔",
-  "q": "𐊕", "r": "𐊽", "s": "𐊢", "t": "𐊑",
-  "u": "𐊫", "v": "𐊶", "w": "𐊘", "x": "𐊙",
-  "y": "𐊚", "z": "𐊂"
+  a:"𐊜", b:"𐊗", c:"𐊍", d:"𐊅",
+  e:"𐊴", f:"𐊇", g:"𐊈", h:"𐊉",
+  i:"𐊡", j:"𐊊", k:"𐊋", l:"𐊠",
+  m:"𐊓", n:"𐊧", o:"𐊵", p:"𐊔",
+  q:"𐊕", r:"𐊽", s:"𐊢", t:"𐊑",
+  u:"𐊫", v:"𐊶", w:"𐊘", x:"𐊙",
+  y:"𐊚", z:"𐊂"
 };
 
-// Automatically generate reverse mapping
+/* Reverse mapping for Zenth */
 const reverseZenthAlphabet = {};
 for (const letter in zenthAlphabet) {
   reverseZenthAlphabet[zenthAlphabet[letter]] = letter;
@@ -42,12 +40,11 @@ for (const letter in zenthAlphabet) {
 /* =========================
    TRANSLITERATION FUNCTIONS
 ========================= */
-
 function toZenth(text) {
   return text
     .toLowerCase()
     .split("")
-    .map(c => zenthAlphabet[c] || c) // Any character not in a-z stays the same
+    .map(c => zenthAlphabet[c] || c)
     .join("");
 }
 
@@ -58,34 +55,38 @@ function fromZenth(text) {
 }
 
 /* =========================
-   TRANSLATE HANDLER
+   TRANSLATION ENGINE
 ========================= */
-
 function translateText() {
   const from = document.getElementById("fromLang").value;
   const to = document.getElementById("toLang").value;
   const input = document.getElementById("inputText").value;
 
-  // If Zenth is the target language, transliterate everything
-  if (to === "zenth") {
+  // Any → Zenth
+  if (to === "zenth" && from !== "zenth") {
     setOutput(toZenth(input));
     return;
   }
 
-  // If Zenth is the source language, convert back to Latin
-  if (from === "zenth") {
+  // Zenth → Any
+  if (from === "zenth" && to !== "zenth") {
     setOutput(fromZenth(input));
     return;
   }
 
-  // Non-Zenth → Non-Zenth (just copy text for now)
-  setOutput(input);
+  // Zenth → Zenth
+  if (from === "zenth" && to === "zenth") {
+    setOutput(input);
+    return;
+  }
+
+  // Non-Zenth → Non-Zenth (all languages now transliterated to lowercase Latin)
+  setOutput(input.toLowerCase());
 }
 
 /* =========================
-   UI OUTPUT
+   OUTPUT HANDLER
 ========================= */
-
 function setOutput(text) {
   document.getElementById("outputText").textContent = text;
 }
@@ -93,7 +94,6 @@ function setOutput(text) {
 /* =========================
    UI SETUP
 ========================= */
-
 function populateMenus() {
   const fromMenu = document.getElementById("fromLang");
   const toMenu = document.getElementById("toLang");
@@ -108,4 +108,3 @@ function populateMenus() {
 }
 
 populateMenus();
-
