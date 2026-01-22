@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zenth Translator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="translator">
+    <div class="controls">
+      <select id="fromLang"></select>
+      <span>→</span>
+      <select id="toLang"></select>
+    </div>
+
+    <textarea id="inputText" placeholder="Enter text..."></textarea>
+
+    <button onclick="translateText()">Translate</button>
+
+    <div id="outputText" class="output">Translation appears here...</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
