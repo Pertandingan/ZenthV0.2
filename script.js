@@ -4,10 +4,8 @@ const languages = {
   chinese: "Chinese",
   spanish: "Spanish",
   french: "French",
-  // add more here
 };
 
-// Simple Zenth transliteration map
 const zenthMap = {
   a: "𐊜", b: "𐊗", c: "𐊍", d: "𐊅", e: "𐊴",
   f: "𐊇", g: "𐊈", h: "𐊉", i: "𐊡", j: "𐊊",
@@ -34,13 +32,14 @@ function fromZenth(text) {
 }
 
 function setOutput(msg) {
-  document.getElementById("output").textContent = msg;
+  const out = document.getElementById("output");
+  out.textContent = msg;
 }
 
 function translateText() {
   const from = document.getElementById("fromLang").value;
   const to = document.getElementById("toLang").value;
-  const input = document.getElementById("inputText").value;
+  const input = document.getElementById("inputText").value.trim();
 
   if (!input) {
     setOutput("⚠️ Please enter some text to translate.");
@@ -62,11 +61,7 @@ function translateText() {
     return;
   }
 
-  // Non-Zenth → Non-Zenth placeholder
-  setOutput(`⚠️ Translation from ${languages[from]} to ${languages[to]} not supported yet. Showing original: "${input}"`);
+  // Placeholder for non-Zenth → non-Zenth
+  setOutput(`⚠️ Translation from ${languages[from]} to ${languages[to]} not supported yet. Showing original:\n"${input}"`);
 }
 
-  toMenu.value = "zenth";
-}
-
-populateMenus();
