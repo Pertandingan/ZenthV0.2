@@ -108,3 +108,8 @@ function populateMenus() {
 }
 
 populateMenus();
+
+  toMenu.value = "zenth";
+}
+
+populateMenus();
