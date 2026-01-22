@@ -1,3 +1,4 @@
+// language map
 const languages = {
   english: "English",
   zenth: "Zenth",
@@ -6,6 +7,7 @@ const languages = {
   french: "French",
 };
 
+// Zenth glyph map
 const zenthMap = {
   a: "𐊜", b: "𐊗", c: "𐊍", d: "𐊅", e: "𐊴",
   f: "𐊇", g: "𐊈", h: "𐊉", i: "𐊡", j: "𐊊",
@@ -36,7 +38,8 @@ function setOutput(msg) {
   out.textContent = msg;
 }
 
-function translateText() {
+// attach event listener to button
+document.getElementById("translateBtn").addEventListener("click", () => {
   const from = document.getElementById("fromLang").value;
   const to = document.getElementById("toLang").value;
   const input = document.getElementById("inputText").value.trim();
@@ -60,6 +63,10 @@ function translateText() {
     setOutput(fromZenth(input));
     return;
   }
+
+  // Placeholder for non-Zenth → non-Zenth
+  setOutput(`⚠️ Translation from ${languages[from]} to ${languages[to]} not supported yet. Showing original:\n"${input}"`);
+});
 
   // Placeholder for non-Zenth → non-Zenth
   setOutput(`⚠️ Translation from ${languages[from]} to ${languages[to]} not supported yet. Showing original:\n"${input}"`);
