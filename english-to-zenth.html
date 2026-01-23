@@ -1,35 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zenth Translator</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>English ↔ Zenth Translator</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>Zenth Translator ⚡</h1>
-
-    <div class="translator-panel">
-      <label for="language">Choose language:</label>
-      <select id="language">
-        <option value="en">English → Zenth</option>
-        <option value="zen">Zenth → English</option>
-      </select>
-
-      <textarea id="input" placeholder="Type here..."></textarea>
-      <button id="translate">Translate</button>
-      <textarea id="output" placeholder="Translation will appear here..." readonly></textarea>
-    </div>
-
-    <div class="lore-panel" id="lore">
-      <h2>Zenth Lore</h2>
-      <p id="lore-text">The glyphs are watching… they see you.</p>
-    </div>
-
-    <img id="jumpscare" src="scare.png" alt="Jumpscare" />
+    <h1>English ↔ Zenth Translator</h1>
+    <textarea id="inputText" placeholder="Enter text..."></textarea>
+    <select id="languageSelect">
+      <option value="eng-to-zenth">English → Zenth</option>
+      <option value="zenth-to-eng">Zenth → English</option>
+    </select>
+    <button id="translateBtn">Translate</button>
+    <textarea id="outputText" readonly placeholder="Translation appears here..."></textarea>
+    <div id="lorePanel" class="lore">The glyphs watch you...</div>
+    <img id="jumpscare" src="scare.png.png" alt="Jumpscare" />
   </div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
