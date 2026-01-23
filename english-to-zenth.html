@@ -3,44 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zenth Translator Horror ARG</title>
+    <title>English ↔ Zenth Translator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Zenth Translator</h1>
+        <h1 class="glow-title">English ↔ Zenth Translator</h1>
 
         <div class="translator-box">
-            <textarea id="inputText" placeholder="Type your text here..."></textarea>
+            <textarea id="inputText" placeholder="Enter text here..."></textarea>
 
             <div class="controls">
-                <select id="sourceLang">
-                    <option value="english">English</option>
-                    <option value="zenth">Zenth</option>
+                <select id="languageSelect">
+                    <option value="en-to-zen">English → Zenth</option>
+                    <option value="zen-to-en">Zenth → English</option>
                 </select>
-
-                <select id="targetLang">
-                    <option value="zenth">Zenth</option>
-                    <option value="english">English</option>
-                </select>
-
-                <button id="translateBtn">Translate</button>
+                <button id="translateBtn" class="btn-glow">Translate</button>
             </div>
 
-            <textarea id="outputText" placeholder="Translation appears here..." readonly></textarea>
-        </div>
-
-        <div class="lore-panel">
-            <h2>Zenth Lore</h2>
-            <p id="loreText">The Zenth glyphs whisper... They know when you are alone.</p>
+            <textarea id="outputText" placeholder="Translation will appear here..." readonly></textarea>
         </div>
     </div>
-
-    <!-- Jumpscare image -->
-    <img id="jumpscare" src="scare.png.png" alt="Jumpscare">
-
-    <!-- Jumpscare audio -->
-    <audio id="jumpscareAudio" src="JumpscareSound1.mp3"></audio>
 
     <script src="script.js"></script>
 </body>
