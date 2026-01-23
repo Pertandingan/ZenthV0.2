@@ -1,4 +1,4 @@
-// Full Zenth alphabet mapping
+// Zenth alphabet mapping
 const zenthAlphabet = {
   "a": "𐊜", "b": "𐊗", "c": "𐊍", "d": "𐊅", "e": "𐊴",
   "f": "𐊇", "g": "𐊈", "h": "𐊉", "i": "𐊡", "j": "𐊊",
