@@ -1,18 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Zenth Language Portal</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenth Translator Horror ARG</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome to Zenth Language</h1>
-    <p>Enter the world of the forbidden glyphs.</p>
-    <div class="links">
-      <a href="english-to-zenth.html" class="btn">English ↔ Zenth Translator</a>
-      <a href="credits.html" class="btn">Zenth Lore & Credits</a>
+    <div class="container">
+        <h1>Zenth Translator</h1>
+
+        <div class="translator-box">
+            <textarea id="inputText" placeholder="Type your text here..."></textarea>
+
+            <div class="controls">
+                <select id="sourceLang">
+                    <option value="english">English</option>
+                    <option value="zenth">Zenth</option>
+                </select>
+
+                <select id="targetLang">
+                    <option value="zenth">Zenth</option>
+                    <option value="english">English</option>
+                </select>
+
+                <button id="translateBtn">Translate</button>
+            </div>
+
+            <textarea id="outputText" placeholder="Translation appears here..." readonly></textarea>
+        </div>
+
+        <div class="lore-panel">
+            <h2>Zenth Lore</h2>
+            <p id="loreText">The Zenth glyphs whisper... They know when you are alone.</p>
+        </div>
     </div>
-  </div>
+
+    <!-- Jumpscare image -->
+    <img id="jumpscare" src="scare.png.png" alt="Jumpscare">
+
+    <!-- Jumpscare audio -->
+    <audio id="jumpscareAudio" src="JumpscareSound1.mp3"></audio>
+
+    <script src="script.js"></script>
 </body>
 </html>
