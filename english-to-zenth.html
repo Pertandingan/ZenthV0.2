@@ -1,58 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>English ↔ Zenth Translator</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zenth Translator</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="container">
-    <h1>✨ English ↔ Zenth Translator ✨</h1>
-    
-    <div class="translator-box">
-      <div class="row">
-        <label for="fromLang">From:</label>
-        <select id="fromLang">
-          <option value="english">English</option>
-          <option value="zenth">Zenth</option>
-          <option value="chinese">Chinese</option>
-          <option value="spanish">Spanish</option>
-          <option value="french">French</option>
-        </select>
-      </div>
+  <div class="app">
+    <h1>Zenth Translator</h1>
 
-      <div class="row">
-        <label for="toLang">To:</label>
-        <select id="toLang">
-          <option value="zenth">Zenth</option>
-          <option value="english">English</option>
-          <option value="chinese">Chinese</option>
-          <option value="spanish">Spanish</option>
-          <option value="french">French</option>
-        </select>
-      </div>
+    <div class="controls">
+      <select id="fromLang">
+        <option value="english">English</option>
+        <option value="zenth">Zenth</option>
+      </select>
 
-      <div class="row">
-        <label for="inputText">Text:</label>
-        <textarea id="inputText" placeholder="Type your text here..."></textarea>
-      </div>
+      <span>→</span>
 
-      <button id="translateBtn">Translate</button>
-
-      <div id="output" class="output"></div>
+      <select id="toLang">
+        <option value="zenth">Zenth</option>
+        <option value="english">English</option>
+      </select>
     </div>
 
-    <footer>
-      <p>⚡ Powered by Zenth Language v0.2 | Zenth was created as a mystical language from the lost archives of Eldoria.</p>
-    </footer>
+    <textarea
+      id="inputText"
+      placeholder="Type something here..."
+    ></textarea>
+
+    <!-- INLINE onclick so it CANNOT fail -->
+    <button onclick="translateText()">Translate</button>
+
+    <div id="output">Output will appear here.</div>
   </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
-
-
+  <!-- JS LAST -->
   <script src="script.js"></script>
 </body>
 </html>
