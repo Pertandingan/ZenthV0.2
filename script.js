@@ -1,8 +1,3 @@
-// WAIT until page is fully loaded
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Zenth translator loaded.");
-});
-
 // Zenth alphabet
 const zenthMap = {
   a:"𐊜", b:"𐊗", c:"𐊍", d:"𐊅", e:"𐊴",
@@ -13,11 +8,28 @@ const zenthMap = {
   z:"𐊂"
 };
 
-const reverseZenth = Object.fromEntries(
-  Object.entries(zenthMap).map(([k,v]) => [v,k])
-);
+// Reverse map ONLY glyphs
+const reverseZenth = {};
+for (const key in zenthMap) {
+  reverseZenth[zenthMap[key]] = key;
+}
 
-// MAIN TRANSLATE FUNCTION
+// Any → Zenth overlay
+function toZenthOverlay(text) {
+  return text.split("").map(c => {
+    const lower = c.toLowerCase();
+    return zenthMap[lower] || c;
+  }).join("");
+}
+
+// Zenth → English (FIXED)
+function fromZenth(text) {
+  return text.split("").map(c => {
+    return reverseZenth[c] || c;
+  }).join("");
+}
+
+// MAIN
 function translateText() {
   const input = document.getElementById("inputText").value;
   const from = document.getElementById("fromLang").value;
@@ -25,35 +37,19 @@ function translateText() {
   const output = document.getElementById("output");
 
   if (!input.trim()) {
-    output.textContent = "⚠️ Enter text first.";
+    output.textContent = "Zenth awaits your words.";
     return;
   }
 
-  let result = "";
+  let result;
 
-  // English → Zenth
-  if (from === "english" && to === "zenth") {
-    result = input
-      .toLowerCase()
-      .split("")
-      .map(c => zenthMap[c] || c)
-      .join("");
+  if (from === "zenth" && to === "english") {
+    result = fromZenth(input);
+  } else {
+    result = toZenthOverlay(input);
   }
 
-  // Zenth → English
-  else if (from === "zenth" && to === "english") {
-    result = input
-      .split("")
-      .map(c => reverseZenth[c] || c)
-      .join("");
-  }
-
-  // Same → Same
-  else {
-    result = input;
-  }
-
-  // FORCE output
   output.textContent = result;
 }
+
 
