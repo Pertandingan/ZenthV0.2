@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Zenth Translator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div class="app">
-    <h1>Zenth Translator</h1>
+    <h1>𐊜𐊴𐊧𐊑𐊉</h1>
+    <p class="subtitle">The Living Script of Zenth</p>
 
     <div class="controls">
       <select id="fromLang">
-        <option value="english">English</option>
+        <option value="any">Any Language</option>
         <option value="zenth">Zenth</option>
       </select>
 
@@ -25,18 +25,13 @@
       </select>
     </div>
 
-    <textarea
-      id="inputText"
-      placeholder="Type something here..."
-    ></textarea>
+    <textarea id="inputText" placeholder="Speak, and Zenth will answer…"></textarea>
 
-    <!-- INLINE onclick so it CANNOT fail -->
     <button onclick="translateText()">Translate</button>
 
-    <div id="output">Output will appear here.</div>
+    <div id="output" class="output"></div>
   </div>
 
-  <!-- JS LAST -->
   <script src="script.js"></script>
 </body>
 </html>
