@@ -47,7 +47,6 @@ function randomLore(){
 }
 
 function maybeJumpscare(){
-  function maybeJumpscare(){
   if(Math.random() < 0.1){ // 10% chance
     jumpscare.style.display = "block";
     jumpscare.style.opacity = "0";
@@ -61,6 +60,7 @@ function maybeJumpscare(){
     }, 1000); // visible for ~1 second
   }
 }
+
 btn.addEventListener("click", ()=>{
   const mode = select.value;
   const text = input.value;
