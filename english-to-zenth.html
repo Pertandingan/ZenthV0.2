@@ -1,37 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Zenth Translator</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zenth Translator</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <div class="app">
-    <h1>𐊜𐊴𐊧𐊑𐊉</h1>
-    <p class="subtitle">The Living Script of Zenth</p>
+  <div class="container">
+    <h1>Zenth Translator ⚡</h1>
 
-    <div class="controls">
-      <select id="fromLang">
-        <option value="any">Any Language</option>
-        <option value="zenth">Zenth</option>
+    <div class="translator-panel">
+      <label for="language">Choose language:</label>
+      <select id="language">
+        <option value="en">English → Zenth</option>
+        <option value="zen">Zenth → English</option>
       </select>
 
-      <span>→</span>
-
-      <select id="toLang">
-        <option value="zenth">Zenth</option>
-        <option value="english">English</option>
-      </select>
+      <textarea id="input" placeholder="Type here..."></textarea>
+      <button id="translate">Translate</button>
+      <textarea id="output" placeholder="Translation will appear here..." readonly></textarea>
     </div>
 
-    <textarea id="inputText" placeholder="Speak, and Zenth will answer…"></textarea>
+    <div class="lore-panel" id="lore">
+      <h2>Zenth Lore</h2>
+      <p id="lore-text">The glyphs are watching… they see you.</p>
+    </div>
 
-    <button onclick="translateText()">Translate</button>
-
-    <div id="output" class="output"></div>
+    <img id="jumpscare" src="scare.png" alt="Jumpscare" />
   </div>
 
-  <script src="script.js"></script>
+<script src="translator.js"></script>
 </body>
 </html>
