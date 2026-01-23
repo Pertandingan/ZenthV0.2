@@ -47,12 +47,20 @@ function randomLore(){
 }
 
 function maybeJumpscare(){
+  function maybeJumpscare(){
   if(Math.random() < 0.1){ // 10% chance
     jumpscare.style.display = "block";
-    setTimeout(()=> jumpscare.style.display="none", 1000);
+    jumpscare.style.opacity = "0";
+    jumpscare.style.transition = "opacity 0.2s ease-in";
+    setTimeout(() => {
+      jumpscare.style.opacity = "1"; // fade in
+    }, 50);
+    setTimeout(()=>{
+      jumpscare.style.opacity = "0"; // fade out
+      setTimeout(()=> jumpscare.style.display="none", 200); // hide after fade out
+    }, 1000); // visible for ~1 second
   }
 }
-
 btn.addEventListener("click", ()=>{
   const mode = select.value;
   const text = input.value;
