@@ -3,45 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zenth Translator Horror ARG</title>
+    <title>Welcome to Zenth</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Zenth Translator</h1>
+        <h1 class="glow-title">Zenth</h1>
+        <p class="intro">
+            You have entered the world of Zenth, a language older than memory. 
+            The glyphs are alive. They watch. They know.
+        </p>
 
-        <div class="translator-box">
-            <textarea id="inputText" placeholder="Type your text here..."></textarea>
-
-            <div class="controls">
-                <select id="sourceLang">
-                    <option value="english">English</option>
-                    <option value="zenth">Zenth</option>
-                </select>
-
-                <select id="targetLang">
-                    <option value="zenth">Zenth</option>
-                    <option value="english">English</option>
-                </select>
-
-                <button id="translateBtn">Translate</button>
-            </div>
-
-            <textarea id="outputText" placeholder="Translation appears here..." readonly></textarea>
+        <div class="button-container">
+            <a href="english-to-zenth.html" class="btn-glow">Enter Translator</a>
+            <a href="credits.html" class="btn-glow">Credits & Lore</a>
         </div>
 
-        <div class="lore-panel">
-            <h2>Zenth Lore</h2>
-            <p id="loreText">The Zenth glyphs whisper... They know when you are alone.</p>
+        <div class="index-lore-panel">
+            <h2>Lore of Zenth</h2>
+            <p id="indexLoreText">
+                Whispers in the dark, glyphs that crawl across the page. 
+                Beware what you type...
+            </p>
         </div>
     </div>
 
-    <!-- Jumpscare image -->
+    <!-- Jumpscare image for index page -->
     <img id="jumpscare" src="scare.png.png" alt="Jumpscare">
 
     <!-- Jumpscare audio -->
     <audio id="jumpscareAudio" src="JumpscareSound1.mp3"></audio>
 
-    <script src="script.js"></script>
+    <script>
+        // ARG-style lore messages for index
+        const indexLoreMessages = [
+            "The glyphs are waiting for you...",
+            "You cannot leave once you see them.",
+            "Do not look away...",
+            "The language knows your name.",
+            "They watch when you are alone."
+        ];
+
+        let indexLoreIndex = 0;
+        setInterval(() => {
+            document.getElementById("indexLoreText").innerText = indexLoreMessages[indexLoreIndex];
+            indexLoreIndex = (indexLoreIndex + 1) % indexLoreMessages.length;
+        }, 5000); // Change every 5 seconds
+
+        // Random jumpscare chance when user clicks anywhere
+        document.body.addEventListener('click', () => {
+            if (Math.random() < 0.05) { // 5% chance
+                const jumpscare = document.getElementById("jumpscare");
+                const audio = document.getElementById("jumpscareAudio");
+                jumpscare.style.display = "block";
+                audio.currentTime = 0;
+                audio.play();
+                setTimeout(() => {
+                    jumpscare.style.display = "none";
+                }, 1000);
+            }
+        });
+    </script>
 </body>
 </html>
