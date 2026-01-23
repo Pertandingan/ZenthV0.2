@@ -1,5 +1,5 @@
-// Simple Zenth ↔ English dictionary
-const zenthDict = {
+// Zenth glyphs mapping (example)
+const englishToZenth = {
     "a": "𐊜", "b": "𐊗", "c": "𐊍", "d": "𐊅", "e": "𐊴",
     "f": "𐊇", "g": "𐊈", "h": "𐊉", "i": "𐊡", "j": "𐊊",
     "k": "𐊋", "l": "𐊠", "m": "𐊓", "n": "𐊧", "o": "𐊵",
@@ -8,61 +8,32 @@ const zenthDict = {
     " ": " "
 };
 
-function translateToZenth(text) {
-    return text.toLowerCase().split('').map(c => zenthDict[c] || c).join('');
+// Reverse mapping for Zenth → English
+const zenthToEnglish = {};
+for (let key in englishToZenth) {
+    zenthToEnglish[englishToZenth[key]] = key;
 }
 
-function translateToEnglish(text) {
-    const engDict = {};
-    for (let k in zenthDict) engDict[zenthDict[k]] = k;
-    return text.split('').map(c => engDict[c] || c).join('');
-}
+// Translate function
+function translateText() {
+    const input = document.getElementById("inputText").value.toLowerCase();
+    const mode = document.getElementById("languageSelect").value;
+    let output = "";
 
-document.getElementById("translateBtn").addEventListener("click", () => {
-    const source = document.getElementById("sourceLang").value;
-    const target = document.getElementById("targetLang").value;
-    const inputText = document.getElementById("inputText").value;
-    let outputText = "";
-
-    if (source === "english" && target === "zenth") {
-        outputText = translateToZenth(inputText);
-    } else if (source === "zenth" && target === "english") {
-        outputText = translateToEnglish(inputText);
-    } else {
-        outputText = inputText;
+    if (mode === "en-to-zen") {
+        for (let char of input) {
+            output += englishToZenth[char] || char;
+        }
+    } else if (mode === "zen-to-en") {
+        for (let char of input) {
+            output += zenthToEnglish[char] || char;
+        }
     }
 
-    document.getElementById("outputText").value = outputText;
-
-    // Random chance for jumpscare
-    if (Math.random() < 0.15 && inputText.trim() !== "") {
-        showJumpscare();
-    }
-});
-
-// Jumpscare function
-function showJumpscare() {
-    const jumpscare = document.getElementById("jumpscare");
-    const audio = document.getElementById("jumpscareAudio");
-    jumpscare.style.display = "block";
-    audio.currentTime = 0;
-    audio.play();
-    setTimeout(() => {
-        jumpscare.style.display = "none";
-    }, 1000); // 1 second jumpscare
+    const outputText = document.getElementById("outputText");
+    outputText.value = output;
+    outputText.style.color = "#fff"; // Make sure output is visible
 }
 
-// ARG-style lore panel messages
-const loreMessages = [
-    "The glyphs watch you...",
-    "You shouldn't be here alone.",
-    "Do you hear the whispers?",
-    "They know what you typed.",
-    "The Zenth language sees you."
-];
-
-let loreIndex = 0;
-setInterval(() => {
-    document.getElementById("loreText").innerText = loreMessages[loreIndex];
-    loreIndex = (loreIndex + 1) % loreMessages.length;
-}, 4000); // Changes every 4 seconds
+// Attach event listener
+document.getElementById("translateBtn").addEventListener("click", translateText);
