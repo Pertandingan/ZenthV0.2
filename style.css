@@ -8,6 +8,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Container */
@@ -62,7 +63,7 @@ select {
   border: none;
   font-size: 1em;
   background: rgba(255,255,255,0.1);
-  color: #000; /* Make text black for readability */
+  color: #000; /* visible */
 }
 
 /* Button glow effect */
